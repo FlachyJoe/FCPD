@@ -1,0 +1,18 @@
+#N canvas 787 380 482 325 12;
+#X obj 65 85 inlet;
+#X obj 289 85 inlet;
+#X text 288 54 Placement;
+#X obj 289 115 list split 5;
+#X obj 65 115 list split 1;
+#X obj 65 145 list prepend Placement Pos;
+#X obj 131 205 list append;
+#X obj 131 235 list trim;
+#X obj 131 265 outlet;
+#X text 65 55 new Pos;
+#X connect 0 0 4 0;
+#X connect 1 0 3 0;
+#X connect 3 1 6 1;
+#X connect 4 1 5 0;
+#X connect 5 0 6 0;
+#X connect 6 0 7 0;
+#X connect 7 0 8 0;
