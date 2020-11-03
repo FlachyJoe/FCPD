@@ -10,6 +10,11 @@ Or the reverse, imagine a real-time performance with visual/musical effects cont
 
 As you can start to see, imagination and  programming skill are one's only limitation when using FCPD.
 
+<p align=center>
+    <i>Sample</i></br>
+    <img src="https://raw.githubusercontent.com/FlachyJoe/FCPD/main/doc/sample-animate.gif" width=800/>
+</p>
+
 ## Requirements
 
 External libraries are needed for Pure-Data :
