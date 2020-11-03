@@ -52,7 +52,7 @@ class PureDataServer:
 				self.output_socket.connect((self.remote_address, int(words[1])))
 				Log("PDServer : Callback initialized to %s:%s\r\n" % (self.remote_address, words[1]))
 			elif words[0] == 'close':
-				self.terminate(None)
+				self.terminate()
 			else:
 				#is words[1] registered ?
 				if words[1] in self.message_handler_list:
