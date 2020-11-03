@@ -10,6 +10,13 @@ Or the reverse, imagine a real-time performance with visual/musical effects cont
 
 As you can start to see, imagination and  programming skill are one's only limitation when using FCPD.
 
+## Requirements
+
+External libraries are needed for Pure-Data :
+* [list-abs](https://puredata.info/downloads/list-abs)
+* [iemlib](https://puredata.info/downloads/iemlib)
+See Pure-Data documentation to install them or use an already populated distribution as [Purr-Data](http://l2ork.music.vt.edu/main/make-your-own-l2ork/software/).
+
 ## Installation
 
 * Copy (or link) the [FCPD/FreeCAD folder](FreeCAD) content in your FreeCAD macro path.
