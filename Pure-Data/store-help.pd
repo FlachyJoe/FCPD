@@ -1,9 +1,0 @@
-#N canvas 590 380 450 325 12;
-#X obj 0 0 cnv 15 445 31 empty empty store 20 12 0 14 #e0e0e0 #404040
-0;
-#X text 5 76 1st inlet : an incomming bang output the stored value
-;
-#X text 5 106 2d inlet : list to be keeped until overwriting;
-#X text 5 145 outlet : output the stored value when a bang is comming
-on the first inlet;
-#X text 5 36 Keep an object and let it down when needed;

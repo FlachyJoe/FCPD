@@ -13,6 +13,7 @@ Err = App.Console.PrintError
 class PureDataServer:
     def __init__(self, listen_address, listen_port):
         self.is_running = False
+        self.is_waiting = False
         self.remote_address = ""
         self.listen_address = listen_address
         self.listen_port = listen_port
@@ -27,8 +28,12 @@ class PureDataServer:
         return strMessage.translate(str.maketrans(',=', '  ', ';()[]{}"\'' ))
 
     def default_message_handler(self, msg):
-        '''to be overwriten'''
-        return msg
+        '''can be overwriten'''
+        pass
+
+    def error_handler(self, msg):
+        '''can be overwriten'''
+        return "ERROR %s" % sys.exc_info()[1]
 
     def register_message_handler(self, first_words, handler):
         if not callable(handler):
@@ -55,12 +60,15 @@ class PureDataServer:
                 self.terminate()
             else:
                 #is words[1] registered ?
-                if words[1] in self.message_handler_list:
-                    ret = self.message_handler_list[words[1]](words)
-                else:
-                    ret = self.default_message_handler(words)
-                if type(ret) != str:
-                    ret = str(ret)
+                try :
+                    if words[1] in self.message_handler_list:
+                        ret = self.message_handler_list[words[1]](words)
+                    else:
+                        ret = self.default_message_handler(words)
+                    if type(ret) != str:
+                        ret = str(ret)
+                except :
+                    ret = self.error_handler(words)
                 #callback include current patch id ($0 in PD) to route the message and a trailing semicolon
                 #quotes, bracket and other are removed by spacer function
                 returnValue.append("%s %s;" % (words[0], self._spacer(ret)) )
@@ -88,10 +96,12 @@ class PureDataServer:
 
         try:
             self.input_socket.bind((self.listen_address, self.listen_port))
-            self.input_socket.listen(5)
+            self.input_socket.listen(1)
 
             if with_dialog:
                 self._showDialog()
+
+            self.is_waiting = True
 
             Log("PDServer : Listening on port %i\r\n" % self.listen_port)
 
@@ -107,7 +117,10 @@ class PureDataServer:
                         read_list.append(client_socket)
                         self.remote_address = address[0]
                         Log("PDServer : Connection from %s:%s\r\n" % address)
-                        self.message_box.setText("Connected with PureData")
+                        if self.message_box:
+                            self.message_box.setText("Connected with PureData")
+                        self.is_waiting = False
+
                     else:
                         data = s.recv(1024)
                         if data:
@@ -130,9 +143,12 @@ class PureDataServer:
                             Log("PDServer : close connection\r\n")
                             read_list.remove(s)
 
-        except:
+        except ValueError:
+            import sys
             Err("PDServer : %s\r\n" % sys.exc_info()[1])
         finally:
+            # send close message to PD
+            self.output_socket.send(b"CLOSE")
             try:
                 self.input_socket.shutdown(socket.SHUT_RDWR)
             except OSError:
