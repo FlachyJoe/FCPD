@@ -2,6 +2,8 @@
 
 FCPD is a set of [FreeCAD](https://github.com/FreeCAD/FreeCAD) python macros and [Pure-Data](https://github.com/pure-data/pure-data) (aka PD) patches to link the two softwares.
 
+This repository is no more maintained, please use [FCPDWorkbench](https://github.com/FlachyJoe/FCPDWorkbench).
+
 ## What is it for ?
 
 FreeCAD is more than a CAD and Pure-Data is more than *"a free real-time computer music system"*.
