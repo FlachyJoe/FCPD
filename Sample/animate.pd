@@ -32,7 +32,7 @@
 #X text 442 595 new Pos;
 #X text 396 630 update Placement;
 #X text 321 663 set new Placement to object;
-#X text 119 425 go to 2*X0 in 1sec \; (\$1 is incomming float);
+#X text 119 425 go to 2*X0 in 1sec \; (\$1 is incoming float);
 #X text 613 279 Rotation is not used;
 #X text 128 498 rampe object \; initialized with 50ms step;
 #X obj 425 398 pipe 1000;

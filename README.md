@@ -1,6 +1,6 @@
 ## FreeCAD/PureData connection framework
 
-FCPD is a set of [FreeCAD](https://github.com/FreeCAD/FreeCAD) python macros and [Pure-Data](https://github.com/pure-data/pure-data) (aka PD) patches to link the two softwares.
+FCPD is a set of [FreeCAD](https://github.com/FreeCAD/FreeCAD) python macros and [Pure-Data](https://github.com/pure-data/pure-data) (aka PD) patches to link the two software.
 
 This repository is no more maintained, please use [FCPDWorkbench](https://github.com/FlachyJoe/FCPDWorkbench).
 
@@ -37,8 +37,8 @@ See [Sample/PdAccessObjectProperties.FCMacro](Sample/PdAccessObjectProperties.FC
 
 * Import the pdserver module in your macro
 * instantiate a `pdserver.PureDataServer` object with address and port to listen to as constructor arguments
-* set the default message handler i.e. function which take the incomming message as argument and return a stringable value to give back to Pure-Data
-* with message handler registration system you can use different function depending of the first word of the incomming message. Simply call `PureDataServer.register_message_handler([first_word], function_to_call)`
+* set the default message handler i.e. function which take the incoming message as argument and return a stringable value to give back to Pure-Data
+* with message handler registration system you can use different function depending of the first word of the incoming message. Simply call `PureDataServer.register_message_handler([first_word], function_to_call)`
 * run the server with `pureDataServer.run()`
 
 ### On Pure-Data side
@@ -59,7 +59,7 @@ PD objects are documented. Access help via Right mouse button(RMB) > Help
 
 Pure-Data messages are text only so the FreeCAD objects have to be converted to and from string to be processed with Pure-Data.
 
-The PureDataServer object automaticaly remove non-conform characters of the callback message i.e. `,` and `=` are converted to space and `';()\[\]{}"` are removed. In this way the `Base.Vector` python object whose string representation is `Vector(0.0,0.0,0.0)` can be a return value of a message handler and converted to `Vector 0.0 0.0 0.0` PD message.
+The PureDataServer object automatically remove non-conform characters of the callback message i.e. `,` and `=` are converted to space and `';()\[\]{}"` are removed. In this way the `Base.Vector` python object whose string representation is `Vector(0.0,0.0,0.0)` can be a return value of a message handler and converted to `Vector 0.0 0.0 0.0` PD message.
 
 ## Feedback
 
